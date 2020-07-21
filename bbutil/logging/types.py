@@ -18,7 +18,6 @@
 
 import abc
 from abc import ABCMeta
-from typing import List
 
 from datetime import datetime
 
@@ -34,14 +33,14 @@ class Message(object):
 
     def __init__(self, **kwargs):
         self.time = datetime.now()
-        self.app: str = ""
-        self.tag: str = ""
-        self.content: str = ""
-        self.level: str = ""
-        self.raw: bool = False
+        self.app = ""
+        self.tag = ""
+        self.content = ""
+        self.level = ""
+        self.raw = False
 
         # noinspection PyTypeChecker
-        self.progress: Progress = None
+        self.progress = None
 
         item = kwargs.get("app", None)
         if item is not None:
@@ -72,8 +71,8 @@ class Message(object):
 class Timer(object):
 
     def __init__(self, content: str, append_callback):
-        self.content: str = content
-        self.start: datetime = datetime.now()
+        self.content = content
+        self.start = datetime.now()
         self._append = append_callback
         return
 
@@ -89,12 +88,12 @@ class Timer(object):
 class Progress(object):
 
     def __init__(self, limit: int, interval: int, append_callback):
-        self.limit: int = limit
-        self.counter: int = 0
-        self.value: float = 0.0
-        self.finished: bool = False
-        self.interval: int = interval
-        self.interval_counter: int = 0
+        self.limit = limit
+        self.counter = 0
+        self.value = 0.0
+        self.finished = False
+        self.interval = interval
+        self.interval_counter = 0
         self.append = append_callback
         self.length = len(str(self.limit))
         return
@@ -151,7 +150,7 @@ class Progress(object):
 
 class Writer(metaclass=ABCMeta):
 
-    def __init__(self, name: str, index: List[str]):
+    def __init__(self, name: str, index):
         self.id = name
         self.index = index
         return

@@ -16,7 +16,6 @@
 #    Copyright (C) 2017, Kai Raphahn <kai.raphahn@laburec.de>
 #
 
-import io
 import os
 
 from datetime import datetime
@@ -38,12 +37,12 @@ class FileWriter(Writer):
     def __init__(self):
         Writer.__init__(self, "File", _index)
 
-        self.filename: str = ""
-        self.append_data: bool = False
-        self.text_space: int = 15
+        self.filename = ""
+        self.append_data = False
+        self.text_space = 15
 
         # noinspection PyTypeChecker
-        self.file: io.FileIO = None
+        self.file = None
         return
 
     def setup(self, **kwargs):

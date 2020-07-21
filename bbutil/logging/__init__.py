@@ -20,7 +20,6 @@ import sys
 import time
 import traceback
 from threading import Thread
-from typing import List, Dict
 
 import bbutil.logging.writer
 
@@ -45,27 +44,27 @@ _index = {
 class LogState(object):
 
     def __init__(self):
-        self.close: bool = False
-        self.open: bool = False
-        self.use_thread: bool = False
-        self.thread_active: bool = False
+        self.close = False
+        self.open = False
+        self.use_thread = False
+        self.thread_active = False
         return
 
 
 class Logging(object):
 
     def __init__(self):
-        self._level: int = 0
-        self._app: str = ""
-        self._timer_list: List[Timer] = []
-        self._timer_counter: int = 0
+        self._level = 0
+        self._app = ""
+        self._timer_list = []
+        self._timer_counter = 0
 
-        self._buffer: List[Message] = []
-        self._interval: float = 0.01
-        self._index: Dict[int, List[str]] = {}
-        self._writer: List[Writer] = []
+        self._buffer = []
+        self._interval = 0.01
+        self._index = {}
+        self._writer = []
 
-        self.state: LogState = LogState()
+        self.state = LogState()
         return
 
     def __del__(self):

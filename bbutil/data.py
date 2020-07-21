@@ -16,7 +16,6 @@
 #    Copyright (C) 2017, Kai Raphahn <kai.raphahn@laburec.de>
 #
 
-from typing import Any, Tuple
 from enum import Enum
 
 
@@ -109,7 +108,7 @@ class Convert(object):
 
         return values
 
-    def _convert_dict(self, name: str, data: dict) -> Any:
+    def _convert_dict(self, name: str, data: dict):
         """Convert dict or die.
 
         :param name: item name.
@@ -142,7 +141,7 @@ class Convert(object):
         config = Data(id=name, keys=names, values=values)
         return config
 
-    def _convert(self, itemid: str, data: Any) -> Tuple[Any, bool]:
+    def _convert(self, itemid: str, data):
         """Convert item or die.
 
         :param itemid: root id.
@@ -205,7 +204,7 @@ class Convert(object):
 
         return value, valid
 
-    def parse(self, data: Any) -> Any:
+    def parse(self, data):
         """Parse given data.
 
         :return: converted data or none.

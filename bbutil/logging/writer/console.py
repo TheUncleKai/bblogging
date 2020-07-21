@@ -20,8 +20,6 @@ import sys
 import colorama
 import platform
 
-from typing import Dict, TextIO, List
-
 from bbutil.logging.types import Writer, Message
 from bbutil.utils import get_terminal_size
 
@@ -82,20 +80,20 @@ class ConsoleWriter(Writer):
     def __init__(self):
         Writer.__init__(self, "Console", _index)
 
-        self.styles: Dict[str, _Style] = _schemes
-        self.encoding: str = ""
-        self.text_space: int = 15
-        self.seperator: str = "|"
-        self.length: int = 0
-        self.error_index: List[str] = ["ERROR", "EXCEPTION"]
+        self.styles = _schemes
+        self.encoding = ""
+        self.text_space = 15
+        self.seperator = "|"
+        self.length = 0
+        self.error_index = ["ERROR", "EXCEPTION"]
         self.use_error = False
-        self.stdout: TextIO = sys.stdout
-        self.stderr: TextIO = sys.stderr
+        self.stdout = sys.stdout
+        self.stderr = sys.stderr
 
         size_x, size_y = get_terminal_size()
 
-        self.line_width: int = size_x
-        self.bar_len: int = 50
+        self.line_width = size_x
+        self.bar_len = 50
         return
 
     def setup(self, **kwargs):

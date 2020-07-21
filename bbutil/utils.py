@@ -21,7 +21,6 @@ import os
 import platform
 import json
 import struct
-from typing import Union, Any, Tuple
 
 __all__ = [
     "check_dict",
@@ -46,7 +45,7 @@ def check_dict(checkdict: dict, keylist: list) -> bool:
     return ret
 
 
-def check_object(checkobject: Any, keylist: list) -> bool:
+def check_object(checkobject, keylist: list) -> bool:
     ret = True
 
     if checkobject is None:
@@ -59,7 +58,7 @@ def check_object(checkobject: Any, keylist: list) -> bool:
     return ret
 
 
-def openjson(filename: str) -> Union[dict, None]:
+def openjson(filename: str):
     f = open(filename, mode='r', encoding="utf-8")
     data = json.load(f)
     f.close()
@@ -71,7 +70,7 @@ def full_path(pathname: str) -> str:
     return filename
 
 
-def get_attribute(path: str, classname: str) -> Union[Any, None]:
+def get_attribute(path: str, classname: str):
     fromlist = [classname]
 
     try:
@@ -87,7 +86,7 @@ def get_attribute(path: str, classname: str) -> Union[Any, None]:
     return c
 
 
-def _get_terminal_size_windows() -> Tuple[int, int]:  # pragma: no cover
+def _get_terminal_size_windows():  # pragma: no cover
     try:
         import struct
         from ctypes import windll, create_string_buffer
@@ -110,7 +109,7 @@ def _get_terminal_size_windows() -> Tuple[int, int]:  # pragma: no cover
     return 80, 25
 
 
-def _get_terminal_size_tput() -> Tuple[int, int]:  # pragma: no cover
+def _get_terminal_size_tput():  # pragma: no cover
     """get terminal width
     src: http://stackoverflow.com/questions/263890/how-do-i-find-the-width-height-of-a-terminal-window
     """
@@ -140,7 +139,7 @@ def _ioctl_gwinsz(fdin):
     return cr_data
 
 
-def _get_terminal_size_linux() -> Tuple[int, int]:  # pragma: no cover
+def _get_terminal_size_linux():  # pragma: no cover
     cr = _ioctl_gwinsz(0) or _ioctl_gwinsz(1) or _ioctl_gwinsz(2)
     if not cr:
 
@@ -161,7 +160,7 @@ def _get_terminal_size_linux() -> Tuple[int, int]:  # pragma: no cover
     return int(cr[1]), int(cr[0])
 
 
-def get_terminal_size() -> Tuple[int, int]:  # pragma: no cover
+def get_terminal_size():  # pragma: no cover
     current_os = platform.system()
     tuple_xy = (80, 40)
     if current_os == 'Windows':
@@ -188,7 +187,7 @@ def print_exception(e: Exception):
     return
 
 
-def execute(name: str, command: list, data: list = None, callback: Any = None) -> Tuple[bool, int]:
+def execute(name: str, command: list, data: list = None, callback=None):
     try:
         proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     except Exception as e:
